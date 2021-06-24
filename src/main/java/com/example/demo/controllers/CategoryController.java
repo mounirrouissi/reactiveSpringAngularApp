@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
 
-// comment here
+// comment here again
     @GetMapping("/categories")
     public List<Category> getCat() {
         return categoryRepo.findAll();
