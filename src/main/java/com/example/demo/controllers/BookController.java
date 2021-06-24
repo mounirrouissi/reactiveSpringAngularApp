@@ -30,7 +30,7 @@ public class BookController {
 
 
     @GetMapping("/books")
-    public Page<Book> getBooks(@PathParam("page")int page, @PathParam("size")int size)
+    public Page<Book> getBooks(@PathParam("page")Integer page, @PathParam("size")Integer size)
 
     {
        return bookRepo.findAll(PageRequest.of(page,size));

@@ -67,11 +67,10 @@ public class Author {
         this.books = books;
     }
 
-    public Author(int age, String name, String password, Set<Book> books) {
+    public Author(int age, String name, String password) {
         this.age = age;
         this.name = name;
         this.password = password;
-        this.books = books;
     }
 
     public String getPassword() {

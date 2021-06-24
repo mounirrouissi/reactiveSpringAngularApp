@@ -1,14 +1,14 @@
 package com.example.demo.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
 public class Book {
 
     @Id
@@ -26,13 +26,23 @@ public class Book {
     )
     private Set<Category> categories=new HashSet<>();
 
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", categories=" + categories +
+                '}';
+    }
 
     public Book() {
     }
+@JsonIgnore
+    public Set<Category> getCategories() {
+        return categories;
+    }
 
-
-    public Book(String name,  Set<Category> categories) {
+    public Book(String name, Set<Category> categories) {
         this.name = name;
         this.categories = categories;
     }

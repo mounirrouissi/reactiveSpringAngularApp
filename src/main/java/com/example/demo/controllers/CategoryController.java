@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Set;
 
@@ -30,10 +31,17 @@ public class CategoryController {
         return categoryRepo.findAll();
     }
 
-
     @GetMapping("/categories/{id}")
-    public Set<Book> getBooksByCategory(@PathVariable int id) {
+    public Set<Book> getBooksByCategory(@PathVariable int id, @PathParam(value="page") int page , @PathParam(value = "size") int size) {
+        System.out.println(" pagination called here");
+        System.out.println(page);
+        System.out.println(size);
         var byId = categoryRepo.findById((long) id).get();
-        return byId.getBooks();
+return         byId.getBooks();
+
+
+
     }
+
+
 }

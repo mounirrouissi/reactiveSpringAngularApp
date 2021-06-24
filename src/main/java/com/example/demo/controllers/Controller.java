@@ -32,8 +32,7 @@ public class Controller {
 
 
 @GetMapping("/authors")
-    public Page<Author> getAuthor(@PathParam("page")int page,@PathParam("size")int size){
-
+    public Page<Author> getAuthor(@PathParam("page")Integer page,@PathParam("size")Integer size){
         return authorRepo.findAll(PageRequest.of(page,size, Sort.by(Sort.Direction.ASC,"name")));
 }
 

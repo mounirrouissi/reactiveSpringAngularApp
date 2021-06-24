@@ -35,9 +35,17 @@ private List<Author> lis=new ArrayList<>();
 	public void run(String... args) throws Exception {
 		var category1 = new Category("Fiction");
 			var category2 = new Category("Horror");
-		var b = new Book("Azer", Set.of(category1, category2));
+			List<Book> list=new ArrayList<>();
+		for (int i = 0; i < 12; i++) {
 
-		Author author = new Author(2L,26,"Monir", String.valueOf( 10)  , Set.of(b) );
+			var  b = new Book("Azer"+i, Set.of(category1, category2));
+
+list.add(b);
+		}
+		list.stream().forEach(x-> bookRepo.saveAll(list)
+		);
+		Author author = new Author(23,"Monir","Monir"  );
 		authorRepo.save(author);
+
 
 	}}
