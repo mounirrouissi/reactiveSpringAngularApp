@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class CategoryController {
     private ProductCategoryRepo categoryRepo;
     private BookRepo bookRepo;
@@ -32,13 +31,17 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/{id}")
-    public Set<Book> getBooksByCategory(@PathVariable int id, @PathParam(value="page") int page , @PathParam(value = "size") int size) {
+    public List<Book> getBooksByCategory(@PathVariable int id/*, @PathParam(value="page")int page , @PathParam(value = "size") int size*/) {
         System.out.println(" pagination called here");
-        System.out.println(page);
-        System.out.println(size);
+      /*  System.out.println(page);
+        System.out.println(size);*/
         var byId = categoryRepo.findById((long) id).get();
-return         byId.getBooks();
+        return byId.getBooks();
+//        return new PageImpl<Book>(books.subList(1, 5), PageRequest.of(page, size), books.size());
 
+    /*    Page<Book> pages = new PageImpl<>((List<Book>) books, PageRequest.of(page, size), books.size());
+
+return  pages;*/
 
 
     }

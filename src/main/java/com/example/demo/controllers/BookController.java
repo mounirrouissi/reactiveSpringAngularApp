@@ -9,9 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
+import java.util.List;
 
 
 @RestController
@@ -21,7 +23,7 @@ public class BookController {
 
     private BookRepo bookRepo;
 
-    public BookController(AuthorRepo authorRepo, BookRepo bookRepo ) {
+    public BookController(BookRepo bookRepo ) {
         this.bookRepo = bookRepo;
 
     }
@@ -37,8 +39,16 @@ public class BookController {
 
     }
 
+    @GetMapping("/books/{id}")
+    public Book getBook(@PathVariable(name = "id") int  id ){
+        System.out.println(bookRepo.findById(Long.valueOf(id)).get());
 
-
+        return bookRepo.findById(Long.valueOf(id)).get();
+    }
+@GetMapping("/books/latest")
+    public List<Book> getLatestBooks(){
+      return  this.bookRepo.findLatest();
+}
 
 
 }

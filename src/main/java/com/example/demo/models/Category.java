@@ -1,8 +1,10 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,10 +27,9 @@ public class Category   {
     @Column(unique = true)
     private String name;
     @ManyToMany(mappedBy = "categories")
-    private Set<Book> books;
-
-
-    public Set<Book> getBooks() {
+    private List<Book> books;
+@JsonIgnore
+    public List<Book> getBooks() {
         return books;
     }
 

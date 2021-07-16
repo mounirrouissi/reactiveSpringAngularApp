@@ -38,7 +38,7 @@ private List<Author> lis=new ArrayList<>();
 			List<Book> list=new ArrayList<>();
 		for (int i = 0; i < 12; i++) {
 
-			var  b = new Book("Azer"+i, Set.of(category1, category2));
+			var  b = new Book("Azer"+i, Set.of(category1, category2),i*2);
 
 list.add(b);
 		}
